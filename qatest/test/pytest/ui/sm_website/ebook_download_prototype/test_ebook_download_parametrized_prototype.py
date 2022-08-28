@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from urllib import parse
 
 
+@pytest.mark.usefixtures("init_driver")
 class TestClass(object):
 
     @pytest.mark.parametrize(
@@ -21,10 +22,12 @@ class TestClass(object):
         ]
     )
     def test_filling_demo_form(self, ebook_path, file_lang, valid_link):
-        service = Service()
-        service.start()
-        driver = webdriver.Remote(service.service_url)
-        driver.maximize_window()
+        # service = Service()
+        # service.start()
+        # driver = webdriver.Remote(service.service_url)
+
+        # self.driver.maximize_window()
+        driver = self.driver
         driver.get('https://www.salesmanago.com/info/knowledgecenter.htm')
         driver.implicitly_wait(3)
         ebook = driver.find_element(By.XPATH, '//a[contains(@href,"' + ebook_path + '")]')

@@ -1,0 +1,1 @@
+#plik na parametryzowane zestawy danych do testów
